@@ -9,6 +9,7 @@ import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { MongooseModule } from '@nestjs/mongoose';
+require('dotenv').config();
 
 @Module({
   imports: [
@@ -17,7 +18,7 @@ import { MongooseModule } from '@nestjs/mongoose';
     SamModule,
     TokenModule,
     AuthModule,
-    MongooseModule.forRoot('mongodb://localhost:/emoframestg'),
+    MongooseModule.forRoot(process.env.MONGODBCONNECT),
     UserModule,
   ],
   controllers: [

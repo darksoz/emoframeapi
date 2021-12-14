@@ -19,7 +19,7 @@ export class UserController {
         return this.userService.getById(id);
     }
 
-    @UseGuards(JwtAuthGuard, UserGuard)
+    //@UseGuards(JwtAuthGuard, UserGuard)
     @Post('register')
     async create(@Body() task: User) : Promise<User>{
         return this.userService.create(task);
