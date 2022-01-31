@@ -7,13 +7,14 @@ import { LocalStrategy } from './shared/local.strategy';
 import { JwtStrategy } from './shared/jwt.strategy';
 import { AuthController } from './auth.controller';
 import { TokenModule } from 'src/token/token.module';
+require('dotenv').config();
 
 @Module({
     imports: [ 
         UserModule,
         JwtModule.register({
-            secret: `${process.env.JWTSECRET}`,
-            signOptions: { expiresIn: '2h' },
+            secret: process.env.JWTSECRET,
+            signOptions: { expiresIn: '5h' },
           }),
         PassportModule,
         forwardRef(()=>TokenModule)

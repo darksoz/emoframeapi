@@ -9,10 +9,13 @@ import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { MongooseModule } from '@nestjs/mongoose';
-require('dotenv').config();
+import { PatientModule } from './patient/patient.module';
+import { SpecialistModule } from './specialist/specialist.module';
 
 @Module({
   imports: [
+    PatientModule,
+    SpecialistModule,
     SusModule,
     LeapModule,
     SamModule,
