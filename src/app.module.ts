@@ -12,6 +12,8 @@ import { MongooseModule } from '@nestjs/mongoose';
 import { PatientModule } from './patient/patient.module';
 import { SpecialistModule } from './specialist/specialist.module';
 
+const dbConnect = process.env.NODE_ENV === 'development' ? process.env.MONGODBCONNECT_STG : process.env.MONGODBCONNECT_STG;
+
 @Module({
   imports: [
     PatientModule,
@@ -21,7 +23,7 @@ import { SpecialistModule } from './specialist/specialist.module';
     SamModule,
     TokenModule,
     AuthModule,
-    MongooseModule.forRoot(process.env.MONGODBCONNECT),
+    MongooseModule.forRoot(dbConnect),
     UserModule,
   ],
   controllers: [
