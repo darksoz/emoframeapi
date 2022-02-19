@@ -1,3 +1,4 @@
+import { PanasModule } from './instruments/panas/panas.module';
 import { SusModule } from './instruments/sus/sus.module';
 import { LeapModule } from './instruments/leap/leap.module';
 import { SamModule } from './instruments/sam/sam.module';
@@ -16,6 +17,7 @@ const dbConnect = process.env.NODE_ENV === 'development' ? process.env.MONGODBCO
 
 @Module({
   imports: [
+    PanasModule,
     PatientModule,
     SpecialistModule,
     SusModule,
