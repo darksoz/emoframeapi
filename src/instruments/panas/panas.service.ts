@@ -2,7 +2,7 @@
 https://docs.nestjs.com/providers#services
 */
 
-import { Injectable } from '@nestjs/common';
+import { HttpException, Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { Panas } from './panas';
@@ -14,5 +14,14 @@ export class PanasService {
     async create(task: Panas ){
         const createdData = new this.panasModel(task);
         return await createdData.save();
+    }
+
+    async getById(id: String){
+        try{
+            return await this.panasModel.findById(id).exec();
+        }
+        catch(exc){
+            new HttpException("error", 500);
+        }
     }
 }
