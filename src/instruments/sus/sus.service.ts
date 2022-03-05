@@ -18,13 +18,9 @@ export class SusService {
         return await createdData.save();
     }
 
-    async getData(json: Object){
-        let name = json["name"];
-        let data = await this.susModel.find().exec();
-        console.log("name => ", json);
+    async getData(name: String){
         try{
-            var filteredData =  data.filter(json => json.Username.toLocaleLowerCase().includes(name.toLocaleLowerCase()));
-            return await filteredData;
+            return this.susModel.find().where('Username').equals( { $regex: `${name}`, $options: 'i' }).exec();
         }
         catch(exc){
             new HttpException("error", 500);
