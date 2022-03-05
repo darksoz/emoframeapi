@@ -15,9 +15,9 @@ export class SusController {
     }
 
     @UseGuards(JwtAuthGuard, UserGuard)
-    @Post()
-    async find(@Body() json: Object) : Promise<Sus[]>{
-        return this.SusService.getData(json);
+    @Get(':name')
+    async find(@Param('name') name) : Promise<Sus[]>{
+        return this.SusService.getData(name);
     }
 
     @UseGuards(JwtAuthGuard, UserGuard)

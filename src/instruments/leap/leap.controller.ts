@@ -2,7 +2,7 @@
 https://docs.nestjs.com/controllers#controllers
 */
 
-import { Body, Controller, Post, UseGuards } from '@nestjs/common';
+import { Body, Controller, Get, Param, Post, UseGuards } from '@nestjs/common';
 import { JwtAuthGuard } from 'src/auth/shared/jwt-auth.guard';
 import { UserGuard } from 'src/guard/user.guard';
 import { Leap } from './leap';
@@ -18,9 +18,9 @@ export class LeapController {
     }
 
     @UseGuards(JwtAuthGuard, UserGuard)
-    @Post()
-    async find(@Body() json: Object) : Promise<Leap[]>{
-        return this.leapService.getData(json);
+    @Get(':name')
+    async find(@Param('name') name) : Promise<Leap[]>{
+        return this.leapService.getData(name);
     }
 
     @UseGuards(JwtAuthGuard, UserGuard)
