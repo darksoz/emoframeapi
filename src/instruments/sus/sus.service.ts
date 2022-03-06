@@ -6,7 +6,6 @@ import { HttpException, Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model, Mongoose } from 'mongoose';
 import { Sus } from './sus';
-import * as mongoose from 'mongoose';
 
 
 @Injectable()
@@ -27,10 +26,8 @@ export class SusService {
         }
     }
 
-    async getById(json: Object){
-        let id = json["id"];
+    async getById(id: String){
         try{
-            console.log("dados ", await this.susModel.findById(id).exec());
             return await this.susModel.findById(id).exec();
         }
         catch(exc){
