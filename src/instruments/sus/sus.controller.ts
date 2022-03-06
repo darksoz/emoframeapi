@@ -21,8 +21,8 @@ export class SusController {
     }
 
     @UseGuards(JwtAuthGuard, UserGuard)
-    @Post('id')
-    async getById(@Body() id: Object) : Promise<Sus>{
+    @Get('id/:id')
+    async getById(@Param('id') id) : Promise<Sus>{
         return this.SusService.getById(id);
     }
 }
