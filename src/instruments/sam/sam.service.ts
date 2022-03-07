@@ -24,4 +24,13 @@ export class SamService {
             new HttpException("error", 500);
         }
     }
+
+    async getById(id: String){
+        try{
+            return await this.samModel.findById(id).exec();
+        }
+        catch(exc){
+            new HttpException("error", 500);
+        }
+    }
 }
