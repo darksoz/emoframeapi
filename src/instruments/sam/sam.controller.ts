@@ -23,4 +23,10 @@ export class SamController {
     async find(@Param('name') name) : Promise<Sam[]>{
         return this.samService.getData(name);
     }
+
+    @UseGuards(JwtAuthGuard, UserGuard)
+    @Get('id/:id')
+    async getById(@Param('id') id) : Promise<Sam>{
+        return this.samService.getById(id);
+    }
 }
