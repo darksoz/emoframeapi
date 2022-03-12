@@ -22,4 +22,10 @@ export class ZanonController {
     async find(@Param('name') name) : Promise<Zanon[]>{
         return this.zanonService.getData(name);
     }
+
+    @UseGuards(JwtAuthGuard, UserGuard)
+    @Get('id/:id')
+    async getById(@Param('id') id) : Promise<Zanon>{
+        return this.zanonService.getById(id);
+    }
 }

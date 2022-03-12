@@ -24,4 +24,13 @@ export class ZanonService {
             new HttpException("error", 500);
         }
     }
+
+    async getById(id: String){
+        try{
+            return await this.zanonModel.findById(id).exec();
+        }
+        catch(exc){
+            new HttpException("error", 500);
+        }
+    }
 }
