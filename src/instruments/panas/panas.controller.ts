@@ -22,4 +22,10 @@ export class PanasController {
     async find(@Param('name') name) : Promise<Panas[]>{
         return this.panasService.getData(name);
     }
+
+    @UseGuards(JwtAuthGuard, UserGuard)
+    @Get('id/:id')
+    async getById(@Param('id') id) : Promise<Panas>{
+        return this.panasService.getById(id);
+    }
 }

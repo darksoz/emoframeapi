@@ -24,4 +24,13 @@ export class PanasService {
             new HttpException("error", 500);
         }
     }
+
+    async getById(id: String){
+        try{
+            return await this.panasModel.findById(id).exec();
+        }
+        catch(exc){
+            new HttpException("error", 500);
+        }
+    }
 }
