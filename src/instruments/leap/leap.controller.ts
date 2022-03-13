@@ -24,8 +24,8 @@ export class LeapController {
     }
 
     @UseGuards(JwtAuthGuard, UserGuard)
-    @Post('id')
-    async getById(@Body() id: Object) : Promise<Leap>{
+    @Get('id/:id')
+    async getById(@Param('id') id) : Promise<Leap>{
         return this.leapService.getById(id);
     }
 }

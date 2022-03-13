@@ -25,8 +25,7 @@ export class LeapService {
         }
     }
 
-    async getById(json: Object){
-        let id = json["id"];
+    async getById(id: String){
         try{
             return await this.leapModel.findById(id).exec();
         }
