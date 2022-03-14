@@ -5,20 +5,20 @@ https://docs.nestjs.com/providers#services
 import { HttpException, Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
-import { Leap } from './leap';
+import { Page } from './page';
 
 @Injectable()
-export class LeapService {
-  constructor(@InjectModel('Leap') private readonly leapModel: Model<Leap>) {}
+export class PageService {
+  constructor(@InjectModel('Page') private readonly pageModel: Model<Page>) {}
 
-  async create(task: Leap) {
-    const createdData = new this.leapModel(task);
+  async create(task: Page) {
+    const createdData = new this.pageModel(task);
     return await createdData.save();
   }
 
-  async getData(name: String) {
+  async getData(name: string) {
     try {
-      return this.leapModel
+      return this.pageModel
         .find()
         .where('Username')
         .equals({ $regex: `${name}`, $options: 'i' })
@@ -28,9 +28,9 @@ export class LeapService {
     }
   }
 
-  async getById(id: String) {
+  async getById(id: string) {
     try {
-      return await this.leapModel.findById(id).exec();
+      return await this.pageModel.findById(id).exec();
     } catch (exc) {
       new HttpException('error', 500);
     }

@@ -2,6 +2,7 @@ import { ZanonModule } from './instruments/zanon/zanon.module';
 import { PanasModule } from './instruments/panas/panas.module';
 import { SusModule } from './instruments/sus/sus.module';
 import { LeapModule } from './instruments/leap/leap.module';
+import { PageModule } from './instruments/page/page.module';
 import { SamModule } from './instruments/sam/sam.module';
 import { TokenModule } from './token/token.module';
 import { AuthModule } from './auth/auth.module';
@@ -14,7 +15,10 @@ import { MongooseModule } from '@nestjs/mongoose';
 import { PatientModule } from './patient/patient.module';
 import { SpecialistModule } from './specialist/specialist.module';
 
-const dbConnect = process.env.NODE_ENV === 'development' ? process.env.MONGODBCONNECT_STG : process.env.MONGODBCONNECT_STG;
+const dbConnect =
+  process.env.NODE_ENV === 'development'
+    ? process.env.MONGODBCONNECT_STG
+    : process.env.MONGODBCONNECT_STG;
 
 @Module({
   imports: [
@@ -22,6 +26,7 @@ const dbConnect = process.env.NODE_ENV === 'development' ? process.env.MONGODBCO
     PanasModule,
     PatientModule,
     SpecialistModule,
+    PageModule,
     SusModule,
     LeapModule,
     SamModule,
@@ -30,8 +35,7 @@ const dbConnect = process.env.NODE_ENV === 'development' ? process.env.MONGODBCO
     MongooseModule.forRoot(dbConnect),
     UserModule,
   ],
-  controllers: [
-    AuthController, AppController],
+  controllers: [AuthController, AppController],
   providers: [AppService],
 })
-export class AppModule { }
+export class AppModule {}
