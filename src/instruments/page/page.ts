@@ -1,8 +1,10 @@
 import { Document } from 'mongoose';
 
 export class Page extends Document {
-  Datetime: String;
-  Instrument: String;
-  Questions: Array<Object>;
-  Username: String;
+  Datetime: string;
+  Instrument: string;
+  Questions: Array<unknown>;
+  UserDataForm: Array<unknown>;
+  Evaluation: Array<Object>;
+  Username: string;
 }
