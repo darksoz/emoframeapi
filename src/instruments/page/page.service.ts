@@ -35,4 +35,13 @@ export class PageService {
       new HttpException('error', 500);
     }
   }
+  async update(id: string, task: Page) {
+    try {
+      return await this.pageModel.findByIdAndUpdate(id, task, {
+        new: true,
+      });
+    } catch (exc) {
+      new HttpException('error', 500);
+    }
+  }
 }

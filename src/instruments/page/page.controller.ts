@@ -2,7 +2,15 @@
 https://docs.nestjs.com/controllers#controllers
 */
 
-import { Body, Controller, Get, Param, Post, UseGuards } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Get,
+  Param,
+  Post,
+  UseGuards,
+  Put,
+} from '@nestjs/common';
 import { JwtAuthGuard } from 'src/auth/shared/jwt-auth.guard';
 import { UserGuard } from 'src/guard/user.guard';
 import { Page } from './page';
@@ -27,5 +35,10 @@ export class PageController {
   @Get('id/:id')
   async getById(@Param('id') id): Promise<Page> {
     return this.pageService.getById(id);
+  }
+  @UseGuards(JwtAuthGuard, UserGuard)
+  @Put('update/:id')
+  async update(@Param('id') id, @Body() task: Page): Promise<Page> {
+    return this.pageService.update(id, task);
   }
 }
