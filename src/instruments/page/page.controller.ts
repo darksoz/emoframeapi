@@ -37,7 +37,7 @@ export class PageController {
     return this.pageService.getById(id);
   }
   @UseGuards(JwtAuthGuard, UserGuard)
-  @Put('update/:id')
+  @Put(':id')
   async update(@Param('id') id, @Body() task: Page): Promise<Page> {
     return this.pageService.update(id, task);
   }
