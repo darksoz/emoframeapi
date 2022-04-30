@@ -1,3 +1,4 @@
+import { PomsModule } from './instruments/poms/poms.module';
 import { ZanonModule } from './instruments/zanon/zanon.module';
 import { PanasModule } from './instruments/panas/panas.module';
 import { SusModule } from './instruments/sus/sus.module';
@@ -22,6 +23,7 @@ const dbConnect =
 
 @Module({
   imports: [
+    PomsModule,
     ZanonModule,
     PanasModule,
     PatientModule,
@@ -38,4 +40,4 @@ const dbConnect =
   controllers: [AuthController, AppController],
   providers: [AppService],
 })
-export class AppModule {}
+export class AppModule { }
