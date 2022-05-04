@@ -44,4 +44,14 @@ export class PageService {
       new HttpException('error', 500);
     }
   }
+
+  async getByUserId(id: string) {
+    try {
+      return await this.pageModel
+        .find({UserDataForm : {$elemMatch: {id : "Id", answer: `${id}`}}})
+        .exec();
+    } catch (exc) {
+      new HttpException('error', 500);
+    }
+  }
 }
